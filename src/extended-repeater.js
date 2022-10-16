@@ -15,9 +15,58 @@ const { NotImplementedError } = require('../extensions/index.js');
  * => 'STRINGPLUS00PLUS00PLUS**STRINGPLUS00PLUS00PLUS**STRINGPLUS00PLUS00PLUS'
  *
  */
-function repeater(/* str, options */) {
-  throw new NotImplementedError('Not implemented');
-  // remove line with error and write your code here
+function repeater(str, options) {
+
+  if (Object.hasOwn(options, 'additionRepeatTimes')) {
+    if (Object.hasOwn(options, 'addition')) {
+      let temp = new Array(options.additionRepeatTimes);
+      temp.fill(String(options.addition), 0, options.additionRepeatTimes);
+
+      if (Object.hasOwn(options, 'additionSeparator')) {
+        str = str + temp.join(options.additionSeparator);
+      } else {
+        str = str + temp.join('|');
+      }
+    }
+  }
+  else {
+    if (Object.hasOwn(options, 'addition')) {
+      let temp = new Array(options.additionRepeatTimes);
+      temp.fill(options.addition, 0, options.additionRepeatTimes);
+
+      if (Object.hasOwn(options, 'additionSeparator')) {
+        str = str + temp.join(options.additionSeparator);
+      } else {
+        str = str + temp.join('|');
+      }
+    }
+  }
+
+  let result = str.repeat(options.repeatTimes);
+
+  if (Object.hasOwn(options, 'repeatTimes')) {
+
+    let temp = new Array(options.repeatTimes);
+    temp.fill(str, 0, options.repeatTimes);
+
+    if (Object.hasOwn(options, 'separator')) {
+      result = temp.join(options.separator);
+    } else {
+      result = temp.join('+');
+    }
+  }
+  else {
+    let temp = new Array(1);
+    temp.fill(str, 0, 1);
+
+    if (Object.hasOwn(options, 'separator')) {
+      result = temp.join(options.separator);
+    } else {
+      result = temp.join('+');
+    }
+  }
+
+  return result;
 }
 
 module.exports = {
