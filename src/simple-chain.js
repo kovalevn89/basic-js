@@ -5,33 +5,47 @@ const { NotImplementedError } = require('../extensions/index.js');
  * 
  */
 
-var chain =[];
+
 const chainMaker = {
-  
+  _chain: [],
+
   getLength() {
-    //throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
-    return chain.length;
+    return this._chain.length;
   },
-  addLink( value ) {
-    //throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
-    chain.push(value);
+
+  addLink(value) {
+    if (typeof value === 'undefined')
+      this._chain.push('');
+    else
+      this._chain.push(String(value));
+
+    return this;
   },
-  removeLink( position ) {
-    //throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
-    chain.splice(position, 1);
+
+  removeLink(position) {
+    if (position > this._chain.length || !Number.isInteger(position)) {
+      this._chain = [];
+      throw new NotImplementedError("You can't remove incorrect link!");
+    }
+
+    this._chain.splice(position - 1, 1);
+
+    return this;
   },
+
   reverseChain() {
-    //throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
-    chain.reverse();
+    this._chain.reverse();
+
+    return this;
   },
+
   finishChain() {
-    //throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
-    return '( ' + chain.join(' )~~( ') + ' )';
+    let _arr = this._chain.slice(0);
+    this._chain = [];
+
+    let test = '( ' + _arr.join(' )~~( ') + ' )';
+    //console.debug(test);
+    return test;
   }
 };
 
