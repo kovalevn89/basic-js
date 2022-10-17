@@ -31,7 +31,7 @@ function transform( arr ) {
 
       return result;
   }catch{
-    throw new NotImplementedError("'arr' parameter must be an instance of the Array!");
+    throw new Error("'arr' parameter must be an instance of the Array!");
   }
 }
 

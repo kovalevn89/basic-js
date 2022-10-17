@@ -23,9 +23,9 @@ const chainMaker = {
   },
 
   removeLink(position) {
-    if (position > this._chain.length || !Number.isInteger(position)) {
+    if( position > this._chain.length || position < 1 || typeof position != 'number') {
       this._chain = [];
-      throw new NotImplementedError("You can't remove incorrect link!");
+      throw new Error("You can't remove incorrect link!")
     }
 
     this._chain.splice(position - 1, 1);

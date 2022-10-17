@@ -55,7 +55,8 @@ class VigenereCipheringMachine {
 
   encrypt(message, key) {
     if (!message || !key) {
-      throw new NotImplementedError('Incorrect arguments!');
+      //throw new NotImplementedError('Incorrect arguments!');
+      throw new Error('Incorrect arguments!');
     }
 
     message = message.toUpperCase();
@@ -89,6 +90,11 @@ class VigenereCipheringMachine {
   }
 
   decrypt(message, key) {
+    if (!message || !key) {
+      //throw new NotImplementedError('Incorrect arguments!');
+      throw new Error('Incorrect arguments!');
+    }
+
     message = message.toUpperCase();
     key = key.toUpperCase();
 
